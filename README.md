@@ -13,27 +13,27 @@ The guide will talk you through installing the [Pimoroni MicroPython Firmware](h
 ## CircuitPython Firmware
 The above links described the process of installing the MicroPython Firmware however for our example we're going to install the [CircuitPython Firmware](https://circuitpython.org/board/raspberry_pi_pico/) which will replace the currently installed Pimoroni MicroPython Firmware.
 
-1) Download the latest firmware version, at the time of writing this file is `adafruit-circuitpython-raspberry_pi_pico-en_US-6.2.0-beta.2.uf2`.
+1) Download the [latest firmware](https://circuitpython.org/board/raspberry_pi_pico/), at the time of writing this file is `adafruit-circuitpython-raspberry_pi_pico-en_US-6.2.0-beta.2.uf2`
 1) Boot your Raspberry Pico into bootloader mode by holding down the "BOOTSEL" button whilst plugging in the USB cable.
 1) The Pico will boot and display in file explorer on your PC/Laptop.
 1) Copy the downloaded `adafruit-circuitpython-raspberry_pi_pico-en_US-6.2.0-beta.2.uf2` file across to the explorer window.  After a few seconds your Pico will reboot and you'll be running CircuitPython.
 
 ## Adafruit CircuitPython
-We are going to install Adafruit CircuitPython package.  This package includes various modules for interacting with the Pico device and add-on boards that can be purchased separately. 
+With the CircuitPython Firmware installed we are going to install Adafruit CircuitPython package.  This package includes various modules for interacting with the Pico device and add-on boards, particularly the Pico RGB Keypad. 
 
-The Adafruit CircuitPython package is required to get our example up and running so head on over to the Adafruit CircuitPython GitHub page and checkout their latest [releases](https://github.com/adafruit/Adafruit_CircuitPython_Bundle/releases).  We're looking to download the `py` bundle which, at the time of writing, is labelled `adafruit-circuitpython-bundle-py-20210225.zip`.
+The Adafruit CircuitPython package is required to get our example up and running so head on over to the Adafruit CircuitPython GitHub page and checkout their latest [releases](https://github.com/adafruit/Adafruit_CircuitPython_Bundle/releases).  We're looking to download the `py` bundle which, at the time of writing is labelled `adafruit-circuitpython-bundle-py-20210225.zip`
 
-> Please note the date stamp used in the filename may differ depending on when you are reading this article.  It will be fine to download the latest bundle so long as you download the `py` bundle.
+> Please note the date stamp used in the filename may differ depending on when you are reading this article.  It ~will~ should be fine to download the latest bundle so long as you download the `py` bundle.
 
-## Martin O'Hanlon Pico RGB Keypad
-Download the powerful [Pico RGB Keypad](https://github.com/martinohanlon/pico-rgbkeypad/blob/main/rgbkeypad/rgbkeypad.py) module Martin O'Hanlon.  
+## Martin O'Hanlon's Pico RGB Keypad
+Download the powerful [Pico RGB Keypad](https://github.com/martinohanlon/pico-rgbkeypad/blob/main/rgbkeypad/rgbkeypad.py) module by Martin O'Hanlon.  
 
 ## Installation
-Now we are going to combine the required files from the Adafruit CircuitPython bundle and Martin O'Hanlon Pico RGB Keypad.
+Now we are going to combine the required files from the Adafruit CircuitPython bundle and Martin O'Hanlon Pico RGB Keypad module.
 
-Create a directory on your local machine called "OBS Interface".  This will store the files we will be copying to our Pico device.
+Create a directory on your local machine called "OBS Interface".  This will store the files we will copy to our Pico device.
 
-Inside the "OBS Interface" directory create another directory called "lib"
+Inside the "OBS Interface" directory create another directory called "lib".
 
 Open the Adafruit CircuitPython archive bundle `adafruit-circuitpython-bundle-py-20210225.zip` and extract the directory "adafruit_hid" into the "lib" directory so we end up with `OBS Interface\lib\adafruit_hid\`
 
@@ -53,12 +53,12 @@ Now to get these files copied over to the Pico.
 
 Now Copy the `lib` directory and `main.py` file to the Pico so we have the following structure:
 
-![Pico directory contents](/images/lib_contents.png)
+![Pico directory contents](/images/pico_contents.png)
 
-If you wish you can use Thonny to push your code to the Pico 🙂
+If you wish you can use Thonny to push your code in `main.py` to the Pico 🙂
 
 ## Keyboard Mapping
-The keyboard mapping is found within the `main.py` file.  Why the button on the RGB Keypad is pressed the corresponding key combination is sent to your PC/Laptop:
+The keyboard mapping used to control OBS Studio is is found within the `main.py` file.  When the button on the Pico RGB Keypad are pressed the corresponding key combination is sent to your PC/Laptop:
 
 | Pico Button  	| Key Combination   	|
 |---	        |---	                |
@@ -79,10 +79,12 @@ The keyboard mapping is found within the `main.py` file.  Why the button on the 
 | E  	        | Left Alt + KeyPad 5   |
 | F  	        | Left Alt + KeyPad 6   |
 
-If you wish to use different keycodes them checkout the [Adafruit CircuitPython HID](https://github.com/adafruit/Adafruit_CircuitPython_HID/blob/master/adafruit_hid/keycode.py) module.
+If you wish to use different keycodes then checkout the [Adafruit CircuitPython HID](https://github.com/adafruit/Adafruit_CircuitPython_HID/blob/master/adafruit_hid/keycode.py) module.
 
-Please feel free to use Thonny and amend the key combinations as you see fit, just remember up run/upload your script to the Pico via Thonny. 
+Please feel free to use Thonny and amend the key combinations as you see fit, just remember to run/upload your script to the Pico via Thonny. 
 
-In order to get these key combination working in OBS Studio you need to map the keys to the "Hotkeys" function in ODB Studio. For example, the bottom right corner button on the Pico RG Keypad "F" is mapped to the Left Alt + KeyPad 6 combination.  In OBS Studio open "Settings" -> "Hotkeys" and map your desired function as "Left Alt + KeyPad 6" button:
+In order to get these key combination working in OBS Studio you need to map the key combinations to the "Hotkeys" function in OBS Studio. For example, the bottom right corner button "F" on the Pico RGB Keypad is mapped to the `Left Alt + KeyPad 6` combination.  In OBS Studio open "Settings" -> "Hotkeys" and map your desired function as `Left Alt + KeyPad 6`.  It should appear like this:
 
 ![OBS Hotkey Mapping](/images/obs_hotkey.png)
+
+Feel free to clone this repo and modify `main.py` to your own needs and don't forget to checkout [Martin O'Hanlon](https://github.com/martinohanlon/pico-rgbkeypad) module to ready about the various API functions for interacting with the Pico RGB Keypad.
