@@ -87,4 +87,6 @@ In order to get these key combination working in OBS Studio you need to map the 
 
 ![OBS Hotkey Mapping](/images/obs_hotkey.png)
 
-Feel free to clone this repo and modify `main.py` to your own needs and don't forget to checkout [Martin O'Hanlon](https://github.com/martinohanlon/pico-rgbkeypad) module to ready about the various API functions for interacting with the Pico RGB Keypad.
+Feel free to clone this repo and modify `main.py` to your own needs. I've included my 'lib' directory as reference along with the CircuitPython firmware but I recommend you download them from the official sources mentioned in this guide.
+
+Don't forget to checkout [Martin O'Hanlon](https://github.com/martinohanlon/pico-rgbkeypad) module to ready about the various API functions for interacting with the Pico RGB Keypad!
